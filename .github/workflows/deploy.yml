@@ -2,13 +2,11 @@ name: Deploy Anime Calendar
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
   schedule:
     - cron: "0 */6 * * *"
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -30,7 +28,7 @@ jobs:
       - name: Generate calendar
         run: python generate_calendar.py
 
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/
